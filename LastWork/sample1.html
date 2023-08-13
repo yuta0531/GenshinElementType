@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="ja">
+<head>
+ <link rel="stylesheet" type="text/css" href="style1.css">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" >
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+ <script src="cript.js"></script>
+</head>
+
+<body>
+<!--背景-->
+<div class="bg_pattern Polka_v2"></div>
+
+<!--見出し-->
+<h1 class="bold">原神 キャラクター 一覧</h1>
+
+<!--チェックボックスで元素を選択-->
+<div class="alert alert-success" role="alert">
+
+    <input type="checkbox" id="PyroType" onclick="ElementChecker(this,'Pyro')" checked>
+    <label for="PyroType">炎元素</label>
+  
+    <input type="checkbox" id="HydroType" onclick="ElementChecker(this,'Hydro')" checked>
+    <label for="HydroType">水元素</label>
+
+    <input type="checkbox" id="AnemoType"onclick="ElementChecker(this,'Anemo')" checked/>
+    <label for="AnemoType">風元素</label>
+
+    <input type="checkbox" id="ElectroType" onclick="ElementChecker(this,'Electro')" checked/>
+    <label for="ElectroType">雷元素</label>
+
+    <input type="checkbox" id="DendroType" onclick="ElementChecker(this,'Dendro')" checked/>
+    <label for="DendroType">草元素</label>
+  
+    <input type="checkbox" id="CryoType" onclick="ElementChecker(this,'Cryo')" checked/>
+    <label for="CryoType">氷元素</label>
+
+    <input type="checkbox" id="GeoType" onclick="ElementChecker(this,'Geo')" checked/>
+    <label for="GeoType">岩元素</label>
+  </div>
+
+<p>表示したいキャラクターの元素を選択してください</p>
+
+
+<!--以下は各キャラクターデータ-->
+<div>
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Jean.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ジン</h5>
+          <p class="card-text">風元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Amber.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">アンバー</h5>
+          <p class="card-text">炎元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Lisa.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">リサ</h5>
+          <p class="card-text">雷元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Kaeya.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ガイヤ</h5>
+          <p class="card-text">氷元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Barbara.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">バーバラ</h5>
+          <p class="card-text">水元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Diluc.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ディルック</h5>
+          <p class="card-text">炎元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Razor.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">レザー</h5>
+          <p class="card-text">雷元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Venti.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ウェンティ</h5>
+          <p class="card-text">風元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Klee.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">クレー</h5>
+          <p class="card-text">炎元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Bennett.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ベネット</h5>
+          <p class="card-text">炎元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Noelle.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ノエル</h5>
+          <p class="card-text">岩元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Fischl.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">フィッシュル</h5>
+          <p class="card-text">雷元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Sucrose.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">スクロース</h5>
+          <p class="card-text">風元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Mona.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">モナ</h5>
+          <p class="card-text">水元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Diona.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ディオナ</h5>
+          <p class="card-text">氷元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Albedo.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">アルベド</h5>
+          <p class="card-text">岩元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Rosaria.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ロサリア</h5>
+          <p class="card-text">氷元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Eula.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">エウルア</h5>
+          <p class="card-text">氷元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Aloy.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">アーロイ</h5>
+          <p class="card-text">氷元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Mika.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ミカ</h5>
+          <p class="card-text">氷元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Xiao.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">魈</h5>
+          <p class="card-text">風元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Beidou.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">北斗</h5>
+          <p class="card-text">雷元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Ningguang.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">凝光</h5>
+          <p class="card-text">岩元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Xiangling.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">香菱</h5>
+          <p class="card-text">炎元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Xinqiu.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">行秋</h5>
+          <p class="card-text">水元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Chongyun.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">重雲</h5>
+          <p class="card-text">氷元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Qiqi.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">七七</h5>
+          <p class="card-text">氷元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Keqing.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">刻晴</h5>
+          <p class="card-text">雷元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Tartaglia.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">タルタリヤ</h5>
+          <p class="card-text">水元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Zhongli.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">鍾離</h5>
+          <p class="card-text">岩元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Xinyan.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">辛炎</h5>
+          <p class="card-text">炎元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Ganyu.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">甘雨</h5>
+          <p class="card-text">氷元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="HuTao.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">胡桃</h5>
+          <p class="card-text">炎元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Yanfei.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">煙緋</h5>
+          <p class="card-text">炎元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Shenhe.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">申鶴</h5>
+          <p class="card-text">氷元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="YunJin.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">雲菫</h5>
+          <p class="card-text">岩元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Yelan.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">夜蘭</h5>
+          <p class="card-text">水元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Yaoyao.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ヨォーヨ</h5>
+          <p class="card-text">草元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Baizhu.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">白朮</h5>
+          <p class="card-text">草元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="KamisatoAyaka.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">神里綾華</h5>
+          <p class="card-text">氷元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="KaedeharaKazuha.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">楓原万葉</h5>
+          <p class="card-text">風元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Yoimiya.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">宵宮</h5>
+          <p class="card-text">炎元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Sayu.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">早柚</h5>
+          <p class="card-text">風元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="RaidenShogun.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">雷電将軍</h5>
+          <p class="card-text">雷元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="KujouSara.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">九条裟羅</h5>
+          <p class="card-text">雷元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="SangonomiyaKokomi.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">珊瑚宮心海</h5>
+          <p class="card-text">水元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Thoma.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">トーマ</h5>
+          <p class="card-text">炎元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="AratakiItto.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">荒瀧一斗</h5>
+          <p class="card-text">岩元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Geo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Gorou.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ゴロー</h5>
+          <p class="card-text">岩元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="YaeMiko.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">八重神子</h5>
+          <p class="card-text">雷元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="KamisatoAyato.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">神里綾人</h5>
+          <p class="card-text">水元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="KukiShinobu.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">久岐忍</h5>
+          <p class="card-text">雷元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="ShikanoinHeizou.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">鹿野院平蔵</h5>
+          <p class="card-text">風元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Kirara.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">綺良々</h5>
+          <p class="card-text">草元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Tighnari.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ティナリ</h5>
+          <p class="card-text">草元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Collei.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">コレイ</h5>
+          <p class="card-text">草元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Dori.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ドリー</h5>
+          <p class="card-text">雷元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Electro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Cyno.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">セノ</h5>
+          <p class="card-text">雷セノ：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Candace.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">キャンディス</h5>
+          <p class="card-text">水元素：長柄武器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Hydro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Nilou.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ニィロウ</h5>
+          <p class="card-text">水元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Nahida.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ナヒーダ</h5>
+          <p class="card-text">草元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Cryo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Layla.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">レイラ</h5>
+          <p class="card-text">氷元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Wanderer.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">放浪者</h5>
+          <p class="card-text">風元素：法器</p>
+        </div>
+  </div>
+</div>
+
+<div class="Anemo" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Faruan.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ファルザン</h5>
+          <p class="card-text">風元素：弓</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Alhaitham.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">アルハイゼン</h5>
+          <p class="card-text">草元素：片手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Pyro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Dehya.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">ディシア</h5>
+          <p class="card-text">炎元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+<div class="Dendro" style="display:block;">
+  <div class="card" style="width: 12rem;">
+      <img src="Kaveh.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">カーヴェ</h5>
+          <p class="card-text">草元素：両手剣</p>
+        </div>
+  </div>
+</div>
+
+
+<!--会社概要-->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">会社概要(日本オフィス)</th>
+      <th scope="col">株式会社miHoYo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">所在地</th>
+      <td>東京都渋谷区桜丘町20-1渋谷インフォスタワー19階</td>
+    </tr>
+    <tr>
+      <th scope="row">設立</th>
+      <td>2015年</td>
+    </tr>
+    <tr>
+      <th scope="row">資本金</th>
+      <td>8,000,000円</td>
+    </tr>
+    <tr>
+      <th scope="row">代表取締役</th>
+      <td>李　承天</td>
+    </tr>
+    <tr>
+      <th scope="row">従業員</th>
+      <td>39名(2022年11月現在)</td>
+    </tr>
+    <tr>
+      <th scope="row">事業内容</th>
+      <td>ゲームの企画・開発・運営</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="mapid" style="width:100%;height:500px"></div>
+<script>
+  var mymap = L.map('mapid').setView([35.655401, 139.700795], 10);
+  L.tileLayer(
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+  ).addTo(mymap);
+
+
+var marker = L.marker([35.655401, 139.700795]).addTo(mymap);
+marker.bindPopup("株式会社miHoYo");
+
+</script>
+
+</body>
+</html>
